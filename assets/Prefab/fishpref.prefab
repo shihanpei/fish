@@ -12,7 +12,7 @@
   },
   {
     "__type__": "cc.Node",
-    "_name": "fishred",
+    "_name": "fishpref",
     "_objFlags": 0,
     "_parent": null,
     "_children": [],
@@ -104,9 +104,9 @@
       "__id__": 1
     },
     "asset": {
-      "__uuid__": "de88af0e-d5b7-4921-b8ff-a5aa40c07118"
+      "__uuid__": "7591955f-c4e8-4faf-a0cc-4e8cc77cd67b"
     },
-    "fileId": "e54seFnkVP1rTS1l6JJ0Bd",
+    "fileId": "296Hg3tsBEuLlzOAMbqoiv",
     "sync": false
   }
 ]
