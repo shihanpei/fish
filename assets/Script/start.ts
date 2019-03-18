@@ -1,5 +1,6 @@
 import _ from "lodash"
-import nodepath from "./NodePath"
+import config from "./Config"
+import tool from "./tool";
 
 const { ccclass, property } = cc._decorator;
 
@@ -12,17 +13,15 @@ export default class Helloworld extends cc.Component {
   // 鱼的缓存池
   @property(cc.NodePool)
   fishPool: cc.NodePool = null
+  //定时器时间间隔
+  @property
+  fishtime: number = 5
+  inittime: number = 0
 
   onLoad() {
 
     // 创建一个缓存池
     this.fishPool = new cc.NodePool()
-
-    // 创建鱼
-    this.createFish("fishRed", 3)
-    this.createFish("fishTort", 3)
-    this.createFish("fishShark", 3)
-
   }
 
   /**
@@ -34,14 +33,10 @@ export default class Helloworld extends cc.Component {
     for (let index = 0; index < num; index++) {
       //获取克隆对象的节点
       let fish = this.getFishNode()
-      //获取fishGroupPath（鱼容器的节点）
-      let fishgroup = cc.find(nodepath.fishGroupPath)
-      //鱼容器的节点用getComponent方法获取这个节点里的fish组件
-      let spriteframe = fishgroup.getComponent("fish")
-        //获取对应鱼名字的图片资源
-        .getFishImage(name)
-      //让克隆对象的节点里的cc.Sprite组件的资源等于上面的对应资源
-      fish.getComponent(cc.Sprite).spriteFrame = spriteframe
+      let fishgroup = cc.find(config.fishGroupPath)
+      fish.getComponent(cc.Animation).play(name)
+      //添加move组建
+      fish.addComponent("move")
       //激活节点
       fish.active = true
       //获取随机坐标
@@ -91,7 +86,16 @@ export default class Helloworld extends cc.Component {
     return this.fishPool.get()
   }
 
-
+  update(dt: number) {
+    if (this.inittime <= 0) {
+      // 创建鱼
+      config.fishlist.forEach(fish => {
+        this.createFish(fish.name, Math.round(tool.getRandomNum(1, 5)))
+      });
+      this.inittime = this.fishtime
+    }
+    this.inittime = this.inittime - dt
+  }
 
   // start() {
   //   // init logic
