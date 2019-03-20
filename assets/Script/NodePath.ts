@@ -7,6 +7,8 @@ class NodePath {
    */
   public fishGroupPath: string = "Canvas/fishgroup"
 
+  public weapon:string = "Canvas/weapon"
+
 }
 
 const nodepath = new NodePath()

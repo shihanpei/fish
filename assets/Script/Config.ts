@@ -6,6 +6,10 @@ class Config {
    *  鱼的节点组
    */
   public fishGroupPath: string = "Canvas/fishgroup"
+  /**
+   * 武器节点
+   */
+  public weapon:string = "Canvas/weapon/weapon_level_7_4"
 
   //定义一个鱼的数组
   public fishlist: Array<any> = [
@@ -15,6 +19,8 @@ class Config {
       "gold": 10
     }
   ]
+
+  
 
 }
 

@@ -19,6 +19,24 @@ class Tool {
 		//返回一个正的随机值
 		return result
 	}
+
+	public getPostion(startPos: cc.Vec2, endPos: cc.Vec2): number {
+		// let hudu = Math.atan2(startPos.y - endPos.y, startPos.x - endPos.x)
+		let hudu = Math.atan2(endPos.y - startPos.y, endPos.x - startPos.x)
+		// 转角度
+		let rotation = 180 * hudu / Math.PI
+		rotation = 90 - rotation
+
+		// 超出边界
+		if (endPos.y <= startPos.y) {
+			return
+		}
+		if (rotation < -90 || rotation > 90) {
+			return
+		}
+
+		return rotation
+	}
 }
 const tool = new Tool
 
